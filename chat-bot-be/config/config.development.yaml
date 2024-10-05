@@ -1,0 +1,16 @@
+app:
+  host: 0.0.0.0
+  port: 3000
+  name: ChatBot
+
+database:
+  host: localhost
+  port: 27017
+  name: chatbot_db
+
+redis:
+  host: localhost
+  port: 6379
+  password: 123456 # optional
+  authentication: redisAuth # optional
+  name: chatbot_redis # optional

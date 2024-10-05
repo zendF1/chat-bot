@@ -1,0 +1,8 @@
+app:
+  port: 8080
+  name: ChatBotProd
+
+database:
+  host: prod-db.example.com
+  port: 27017
+  name: chatbot_db_prod
