@@ -11,11 +11,8 @@ import { ConfigService } from 'config/config.service';
       inject: [ConfigService],
       useFactory: async (config: ConfigService) => {
         const dbConfig = config.getDatabaseConfig();
-        console.log('🚀 ~ useFactory: ~ dbConfig:', dbConfig);
         return {
-          uri: `mongodb://${dbConfig.host}:${dbConfig.port}/${dbConfig.name}`,
-          useCreateIndex: true,
-          useFindAndModify: false,
+          uri: `${dbConfig.uri}/${dbConfig.name}`,
           useNewUrlParser: true,
           useUnifiedTopology: true,
         };

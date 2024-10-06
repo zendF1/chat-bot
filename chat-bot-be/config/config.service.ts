@@ -47,6 +47,7 @@ export class ConfigService {
       host: this.get('database.host'),
       port: this.get('database.port'),
       name: this.get('database.name'),
+      uri: this.get('database.uri'),
     };
   }
 
