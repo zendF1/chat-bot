@@ -1,12 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from 'config/config.service';
+import { LoggingInterceptor } from 'src/interceptors/logger.interceptors';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.setGlobalPrefix('api/v1');
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   const appConfig = app.get(ConfigService);
   const { host, port } = appConfig.getAppConfig();
@@ -25,7 +27,6 @@ async function bootstrap() {
     },
     'JWT-auth',
   ); // Add a bearer authentication scheme to the Swagger document
-  config.addServer('/api/v1', 'Chat Bot API'); // Set the base URL for the Swagger document
   config.addTag('Chat Bot', 'Chat Bot API'); // Add a tag to the Swagger document
   const document = SwaggerModule.createDocument(app, config.build()); // Create the Swagger document
   SwaggerModule.setup('api/v1', app, document); // Set up the Swagger UI

@@ -1,4 +1,4 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { UserProfile } from 'src/modules/user/entities/user.profile.entity';
 import { UserSecurity } from 'src/modules/user/entities/user.secirity.entity';
 import { UserSetting } from 'src/modules/user/entities/user.setting.entity';
@@ -11,7 +11,7 @@ export class UserEntity extends BaseEntity {
   @Prop({ type: String, required: true })
   username: string; // Username to log into the system.
 
-  @Prop({ type: String, required: true })
+  @Prop({ type: String, required: true, index: true })
   email: string; // User's email address.
 
   @Prop({ type: String, required: true })
@@ -38,3 +38,5 @@ export class UserEntity extends BaseEntity {
   @Prop({ type: Object })
   token?: UserToken; // User's token
 }
+
+export const UserEntitySchema = SchemaFactory.createForClass(UserEntity);

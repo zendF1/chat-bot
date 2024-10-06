@@ -2,6 +2,24 @@ import { Prop, Schema } from '@nestjs/mongoose';
 import { UserGender } from 'src/shares/constants/user.constant';
 
 @Schema({ _id: false })
+export class UserAddress {
+  @Prop({ type: String })
+  street: string; // User's street address.
+
+  @Prop({ type: String })
+  city: string; // User's city.
+
+  @Prop({ type: String })
+  state: string; // User's state.
+
+  @Prop({ type: String })
+  zip: string; // User's zip code.
+
+  @Prop({ type: String })
+  country: string; // User's country.
+}
+
+@Schema({ _id: false })
 export class UserProfile {
   @Prop({ type: String })
   firstName: string; // User's name.
@@ -21,24 +39,6 @@ export class UserProfile {
   @Prop({ type: String })
   phoneNumber: string; // User's phone number.
 
-  @Prop({ type: String })
+  @Prop({ type: Object })
   address: UserAddress; // User's address.
-}
-
-@Schema({ _id: false })
-export class UserAddress {
-  @Prop({ type: String })
-  street: string; // User's street address.
-
-  @Prop({ type: String })
-  city: string; // User's city.
-
-  @Prop({ type: String })
-  state: string; // User's state.
-
-  @Prop({ type: String })
-  zip: string; // User's zip code.
-
-  @Prop({ type: String })
-  country: string; // User's country.
 }
