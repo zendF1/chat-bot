@@ -22,7 +22,7 @@ async function bootstrap() {
       scheme: 'bearer',
       bearerFormat: 'JWT',
       description: 'Enter your access token',
-      name: 'JWT',
+      name: 'Authorization',
       in: 'header',
     },
     'JWT-auth',

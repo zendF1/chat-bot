@@ -39,4 +39,8 @@ export class UserRepository {
   async getUserByUserEmail(email: string): Promise<UserEntity | null> {
     return this.UserModel.findOne({ email }).lean().exec();
   }
+
+  async getUserByUsername(username: string): Promise<UserEntity | null> {
+    return this.UserModel.findOne({ username }).lean().exec();
+  }
 }

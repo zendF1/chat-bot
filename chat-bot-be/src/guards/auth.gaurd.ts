@@ -5,6 +5,7 @@ import { ConfigService } from 'config/config.service';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
 import { PUBLIC_KEY } from 'src/decorators/auth.decorator';
+import { JwtDto } from 'src/modules/auth/dtos/jwt.dto';
 import { Unauthorized } from 'src/shares/exceptions/auth.exception';
 
 @Injectable()
@@ -34,7 +35,7 @@ export class AuthGuard implements CanActivate {
 
     // validate token
     try {
-      const payload = this.jwtService.verify(token, {
+      const payload: JwtDto = this.jwtService.verify(token, {
         secret: this.configService.get('JWT_SECRET'),
       });
       request['user'] = payload;
